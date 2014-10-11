@@ -6,8 +6,8 @@
  */
 
 // Locations where my files and series are
-define('SERIES', 'C:/MediaShare/TV Shows');
-define('FILMS', 'C:/MediaShare/Films');
+define('SERIES', 'C:/path/to/your/TV Shows');
+define('FILMS',  'C:/path/to/your/Films');
 
 // Get the directories I care about
 $directories   = glob(SERIES . '/*', GLOB_ONLYDIR);
@@ -71,7 +71,7 @@ function getDirectory($path = '.') {
         $dirTreeTemp = getDirectory("$path/$file", $ignore);
         if (is_array($dirTreeTemp)) {
           $dirTree = array_merge($dirTree, $dirTreeTemp);
-		}
+	}
       }
     }
   }
