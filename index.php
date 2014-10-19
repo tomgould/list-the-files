@@ -73,25 +73,25 @@ foreach($directories as $dir) {
  * Get me all the things
  */
 function get_directory($path = '.') {
-  $dirTree = array();
-  $dirTreeTemp = array();
+  $tree = array();
+  $temp = array();
   $ignore[] = '.';
   $ignore[] = '..';
   $dh = @opendir($path);
   while (false !== ($file = readdir($dh))) {
     if (!in_array($file, $ignore)) {
       if (!is_dir($path . '/' . $file)) {
-        $dirTree["$path"][] = $file;
+        $tree["$path"][] = $file;
       }
       else {
-        $dirTreeTemp = get_directory($path . '/' . $file, $ignore);
-        if (is_array($dirTreeTemp)) {
-          $dirTree = array_merge($dirTree, $dirTreeTemp);
+        $temp = get_directory($path . '/' . $file, $ignore);
+        if (is_array($temp)) {
+          $tree = array_merge($tree, $temp);
         }
       }
     }
   }
   closedir($dh);
   
-  return $dirTree;
+  return $tree;
 }
